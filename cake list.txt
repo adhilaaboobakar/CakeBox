@@ -1,0 +1,18 @@
+======cake listing=====
+
+<div class="container">
+    <div class="row ">
+        {%for p in data%}
+            <div class="col-4 mb-3">
+                <div class="card" style="width: 18rem;">
+                    <img src="{{p.image.url}}" class="card-img-top" alt="..." height="350px" >
+                    <div class="card-body">
+                      <h5 class="card-title">{{p.title}}</h5>
+                      <p class="card-text">{{p.description}}</p>
+                      <a href="{%url 'cake-detail' p.id%}" class="btn btn-primary">View more</a>
+                    </div>
+                  </div>
+            </div>
+        {%endfor%}
+    </div>
+</div>

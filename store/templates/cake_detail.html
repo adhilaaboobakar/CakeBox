@@ -1,0 +1,38 @@
+{%extends 'base.html'%}
+
+{%block main_block%}
+<div class="container">
+  <div class="row">
+      <div class="col-1"></div>
+      <div class="col-10">
+          <div class="card mb-3" style="max-width: 540px;">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img src="{{cake.image.url}}" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">{{cake.title}}</h5>
+                    <p class="card-text">{{cake.description}}</p>
+                    <p class="card-text">{{cake.price}}</p>
+                    <p class="card-text">{{cake.category_object}}</p>
+                    <p class="card-text">{{cake.flavour_object}}</p>
+                    <p class="card-text">{{cake.occasion_object}}</p>
+                  
+                      {%for variant in cake_variants %}
+                        {{ variant.shape }} 
+                        {{ variant.weight }}kg  
+                        {{ variant.price }}
+                      {% endfor %}
+                  
+                    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+      </div>
+      <div class="col-1"></div>
+  </div>
+</div>
+
+{%endblock%}

@@ -1,0 +1,49 @@
+{%extends 'base.html'%}
+
+{%block main_block%}
+
+<div class="small-container">
+
+    <div class="row row-2">
+        <h2>All Products</h2>
+        <select>
+            <option>Default Sort</option>
+            <option>Sort by Price</option>
+            <option>Sort by Popularity</option>
+            <option>Sort by Rating</option>
+            <option>Sort by Sale</option>
+        </select>
+    </div>
+
+<div class="row">
+    {%for p in data%}
+    <div class="col-4">
+        <a href="{%url 'cake-detail' p.id%}"><img src="{{p.image.url}}" alt="product-1" height="300px"></a>
+        <a href="{%url 'cake-detail' p.id%}"><h4>{{p.title}}</h4></a>
+        <div class="rating">
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star-o"></i>
+        </div>
+        <p>{{p.description}}</p>
+      </div>
+
+    {%endfor%}
+    
+    
+
+  
+<div class="page-btn">
+    <span>1</span>
+    <span>2</span>
+    <span>3</span>
+    <span>4</span>
+    <span>5</span>
+    <span>&#8594;</span>
+</div>
+</div>
+</div>
+
+{%endblock%}
