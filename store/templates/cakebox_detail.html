@@ -1,0 +1,100 @@
+{%extends 'base.html'%}
+
+{%block main_block%}
+
+<section class="section product-detail">
+    <div class="details container">
+        <div class="left image-container">
+            <div class="text-center wow bounceInUp" data-wow-delay="0.1s">
+
+                <h2 class=" mb-43">{{ cake.title }}</h2>
+            </div>
+            <div class="main">
+                <img src="{{cake.image.url}}" id="zoom" height="200px" alt="" />
+            </div>
+        </div>
+        <div class="right">
+
+            <h3 class="mt-5">Cake Detail</h3>
+            <p>
+                {{cake.description}}
+            </p>
+            <!-- <div class="price">$50</div> -->
+            <form>
+                <div class="col-md-6">
+                    <div class="options-container">
+                        <!-- Occasion options -->
+                        <label for="occasion">
+                            <h5>Occasion</h5>
+                        </label>
+                        <div class="options-row mb-3">
+                            <select id="occasion" name="occasion" class="circular-options">
+                                {% for op in cake.occasion_object.all %}
+                                <option value="{{ op.name }}">{{ op.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <!-- Flavor options -->
+                        <label for="flavour">
+                            <h5>Flavour</h5>
+                        </label>
+                        <div class="options-row">
+                            <select id="flavour" name="flavour" class="circular-options">
+                                {% for op in cake.flavour_object.all %}
+                                <option value="{{ op.name }}">{{ op.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <br>
+                        <textarea id="user-note" name="note" class="form-control" rows="1" cols="5"
+                            placeholder="Enter your Wishes / Messages..."></textarea>
+                    </div>
+                    <p class="mt-2 text-dark">
+                        <label for="">
+                            <h5>Qty</h5>
+                        </label> <input type="number" value="1" name="qty" class="rounded-pill py-1 px-2 small" />
+                    </p>
+                </div>
+                <select id="service-options" class="form-control">
+                    {% for p in cake_variants %}
+                        <option value="{{ p.id }}">Weight(kg/ml): {{ p.weight }} - {{ p.price }}</option>
+                    {% endfor %}
+                </select>
+
+
+
+                <div class="text-center">
+                    <button type="submit">Add To Cart</button>
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+</section>
+<style>
+    .details.container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .left {
+        flex: 0 0 45%;
+        /* Adjust the width as needed */
+    }
+
+    .right {
+        flex: 0 0 45%;
+        /* Adjust the width as needed */
+    }
+
+    /* Additional styling for image */
+    .main img {
+        max-width: 100%;
+        height: auto;
+    }
+</style>
+
+{%endblock%}

@@ -56,7 +56,7 @@ class CakeVarient(models.Model):
     shape_options=[
         ("round","round"),
         ("square","square"),
-        ("rectangle","reactangle"),
+        ("rectangle","rectangle"),
         ("heart","heart"),
         ("custom","custom")
     ]
@@ -88,10 +88,13 @@ class BasketItem(models.Model):
     cake_varient_object=models.ForeignKey(CakeVarient,on_delete=models.CASCADE)
     qty=models.PositiveIntegerField(default=1)
     basket_object=models.ForeignKey(Basket,on_delete=models.CASCADE,related_name="cartitem")
+    flavour_object=models.ForeignKey(Flavour,on_delete=models.CASCADE,null=True)
+    occasion_object=models.ForeignKey(Occasion,on_delete=models.CASCADE,null=True)
     note=models.TextField(blank=True,null=True)
     created_date=models.DateTimeField(auto_now_add=True)
     updated_date=models.DateTimeField(auto_now=True)
     is_active=models.BooleanField(default=True)
+    is_order_placed=models.BooleanField(default=False)
 
 
 
