@@ -44,10 +44,19 @@
                 <li><a href="account.html">Account</a></li>
             </ul>
             </nav>
-            <a href="cart.html"><img src="{%static 'images/cart.png'%}" width="30px" height="30px"></a>  <!--Cart image-->
+            <a href="{%url 'basket-items'%}"><img src="{%static 'images/cart.png'%}" width="30px" height="30px"></a>  <!--Cart image-->
+            
             <img src="images/menu.png" class="menu-icon" onclick="menutoggle()">  <!--Menu image-->
         </div>
     </div>
+{%block link_block%}
+
+{%endblock%}
+
+
+{%block style_block%}
+
+{%endblock%}
     <!-- all products-->
  {%block main_block%}
  

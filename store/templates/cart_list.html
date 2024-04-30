@@ -1,0 +1,64 @@
+
+{% extends 'base.html' %}
+
+{% block link_block %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+{% endblock %}
+
+{% block main_block %}
+<div class="small-container cart-page">
+    <table>
+        <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>SubTotal</th>
+        </tr>
+        <!-- iterate start -->
+        {% for bi in data %}
+        <tr>
+            <td>
+                <div class="cart-info">
+                    <a href=""><img src="{{ bi.cake_varient_object.cake_object.image.url }}"></a>
+                    <div>
+                        <p style="margin-bottom: 0;">{{ bi.cake_varient_object.cake_object.title }}</p>
+                        <small>{{ bi.cake_varient_object.weight }}kg</small>
+                        <small>{{ bi.cake_varient_object.price }}</small>
+                        <br>
+                        <small>{{ bi.cake_varient_object.shape }}</small>
+                        <br>
+                        <a href="{%url 'basketitem-remove' bi.id%}">Remove</a>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <!-- test block -->
+                <form action="{% url 'editcart-qty' bi.id %}" method="post" class="d-flex">
+                    {% csrf_token %}
+                    {% if bi.qty > 1 %}
+                        <button type="submit" class="btn btn-sm btn-dark me-1 py-0 px-1" name="counterButton" value="-" style="font-size: 0.5rem;">-</button>
+                    {% endif %}
+                    <input type="text" class="form-control form-control-sm mx-1 qty" value="{{ bi.qty }}" name="qty" disabled style="width: 2rem; font-size: 0.7rem;" />
+                    <button type="submit" class="btn btn-sm btn-dark ms-1 py-0 px-1" name="counterButton" value="+" style="font-size: 0.5rem;">+</button>
+                </form>
+                
+                
+            </td>
+            <td>{{bi.item_total}}</td>
+        </tr>
+        {% endfor %}
+        <!-- iterate end -->
+    </table>
+
+    <!-- Total -->
+    <div class="total-price">
+        <table>
+            <tr>
+                <td>Subtotal</td>
+                <td>{{request.user.cart.basket_total}}</td>
+            </tr>
+        </table>
+        <a href="{% url 'checkout'%}" class="checkout btn btn-warning" style="background-color: orange !important;">Proceed To Checkout</a>
+
+    </div>  
+</div>
+{% endblock %}

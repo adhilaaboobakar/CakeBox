@@ -521,4 +521,19 @@ form a{
     display: none;
   }
 }
+/* CSS Styles */
+.qty {
+  width: 2rem; /* Adjust width for quantity input */
+  text-align: center; /* Center the text horizontally */
+  margin-right: 0.5rem; /* Add margin to separate quantity from buttons */
+}
+
+.counter-btn {
+  padding: 0.15rem 0.3rem; /* Further reduce padding for smaller button */
+  border-radius: 0.25rem; /* Add border-radius for rounded corners */
+  border: none; /* Remove default button border */
+  font-size: 0.7rem; /* Reduce font size for smaller button */
+  margin-right: 0.5rem; /* Add margin to separate buttons */
+}
+
 

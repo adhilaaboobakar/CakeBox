@@ -27,6 +27,12 @@ urlpatterns = [
     path('index/',views.IndexView.as_view(),name="index"),
     path('cakes/<int:pk>/',views.CakeDetailView.as_view(),name="cake-detail"),
     path('home/',views.HomeView.as_view(),name="home"),
+    path('cakes/<int:pk>/addtocart/',views.AddToBasketView.as_view(),name="add-to-basket"),
+    path('basket/items/all/',views.BasketItemListView.as_view(),name="basket-items"),
+    path('basket/items/<int:pk>/remove/',views.BasketItemRemoveView.as_view(),name="basketitem-remove"),
+    path('checkout/',views.CheckOutView.as_view(),name="checkout"),
+    path("baskets/items/<int:pk>/qty/change/",views.CartItemUpdateQuantityView.as_view(),name="editcart-qty"),
+    path("cakes/filter/<str:flavour>/",views.FilterByFlavourView.as_view(),name="flavour-by-filter"),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

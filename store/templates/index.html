@@ -1,6 +1,21 @@
 {%extends 'base.html'%}
 
+
+
 {%block main_block%}
+<!-- section starts -->
+<section class="cakes-by-flavour">
+    <h2>Cakes by Flavour</h2>
+    <div class="flavour-options">
+        <a href="{% url 'flavour-by-filter' flavour='Chocolate' %}">Chocolate</a>
+        <a href="{% url 'flavour-by-filter' flavour='Blueberry' %}">Blueberry</a>
+        <a href="{% url 'flavour-by-filter' flavour='Strawberry' %}">Strawberry</a>
+        <!-- Add more flavour options as needed -->
+    </div>
+</section>
+
+<!-- section ends -->
+
 
 <div class="small-container">
 
@@ -15,24 +30,25 @@
         </select>
     </div>
 
+    <!-- cake iteration starts -->
 <div class="row">
     {%for p in data%}
     <div class="col-4">
         <a href="{%url 'cake-detail' p.id%}"><img src="{{p.image.url}}" alt="product-1" height="300px"></a>
         <a href="{%url 'cake-detail' p.id%}"><h4>{{p.title}}</h4></a>
-        <div class="rating">
+        <!-- <div class="rating">
           <i class="fa fa-star"></i>
           <i class="fa fa-star"></i>
           <i class="fa fa-star"></i>
           <i class="fa fa-star"></i>
           <i class="fa fa-star-o"></i>
-        </div>
+        </div> -->
         <p>{{p.description}}</p>
       </div>
 
     {%endfor%}
     
-    
+    <!-- iteration ends -->
 
   
 <div class="page-btn">

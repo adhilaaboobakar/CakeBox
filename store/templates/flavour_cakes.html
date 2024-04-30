@@ -1,0 +1,36 @@
+{%extends 'base.html'%}
+    <!-- Display the filtered cakes -->
+    {%block style_block%}
+    <style>
+        .cake-heading {
+            font-size: 24px; /* Adjust the font size */
+            color: #ff6600;/* Set the text color */
+            text-align: center; /* Center the heading */
+            margin-bottom: 20px; /* Add some bottom margin for spacing */
+        }
+    </style>
+    {%endblock%}
+
+
+{%block main_block%}
+<h4 class="cake-heading">{{ flavour }} Cake Online</h4>
+    <div class="row">
+        {%for cake in cakes%}
+        <div class="col-4">
+            <a href="{%url 'cake-detail' cake.id%}"><img src="{{cake.image.url}}" alt="product-1" height="350px"></a>
+            <a href="{%url 'cake-detail' cake.id%}"><h4>{{cake.title}}</h4></a>
+            <!-- <div class="rating">
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star-o"></i>
+            </div> -->
+            <p>{{cake.description}}</p>
+          </div>
+    
+        {%endfor%}
+        </div>
+
+
+{%endblock%}

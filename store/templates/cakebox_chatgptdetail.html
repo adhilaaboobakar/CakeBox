@@ -15,7 +15,9 @@
             </p>
         </div>
         <div class="right">
-            <form>
+            {%if cake_variants%}
+            <form method="post" action="{%url 'add-to-basket' cake_variants.0.id %}">
+                {%csrf_token%}
                 <div class="options-container">
                     <!-- Occasion options -->
                     <div class="mb-3">
@@ -89,6 +91,10 @@
                     <button type="submit" class="btn btn-primary">Add To Cart</button>
                 </div>
             </form>
+            {% else %}
+            <p>No variants available for this cake.</p>
+            {% endif %}     
+
         </div>
     </div>
 </section>
