@@ -1,26 +1,62 @@
 {%extends 'base.html'%}
 
+{%load static%}
+
+<style>
+    /* Style individual flavor options */
+    .flavour-options {
+  display: flex;
+  justify-content: space-between; /* Distribute items evenly */
+  align-items: center; /* Center items vertically */
+}
+
+.flavour-option {
+  text-align: center; /* Center the text */
+  flex: 1; /* Allow items to grow */
+}
+
+</style>
 
 
-{%block main_block%}
-<!-- section starts -->
+{% block main_block %}
+
+<!-- flavour filtering -->
 <section class="cakes-by-flavour">
-    <h2>Cakes by Flavour</h2>
-    <div class="flavour-options">
-        <a href="{% url 'flavour-by-filter' flavour='Chocolate' %}">Chocolate</a>
-        <a href="{% url 'flavour-by-filter' flavour='Blueberry' %}">Blueberry</a>
-        <a href="{% url 'flavour-by-filter' flavour='Strawberry' %}">Strawberry</a>
-        <!-- Add more flavour options as needed -->
+    <h2 class="text-center">Cakes by Flavour</h2>
+    <div class=" row ">
+        <div class=" col-4 ">
+
+            <img src="{% static 'images/Vannilla static.jpg' %}" alt="Vanilla Cake" height="300px" width="250px">
+            <a href="{% url 'flavour-by-filter' flavour='Vanilla' %}">Vanilla Cakes</a>
+
+        </div>
+        <div class="col-4">   
+
+            <img src="{% static 'images/bluberry static.jpg' %}" alt="Blueberry Cake" height="300px" width="250px">
+            <a href="{% url 'flavour-by-filter' flavour='Blueberry' %}"> Blueberry Cakes</a>
+
+        </div>
+        <div class="col-4">
+
+            <img src="{% static 'images/chocolate static.jpg' %}" alt="Chocolate Cake" height="300px" width="250px" >
+            <a href="{% url 'flavour-by-filter' flavour='Chocolate' %}">Chocolate Cakes</a>
+
+        </div>
     </div>
 </section>
 
-<!-- section ends -->
+
+<!-- occasion filtering -->
+
+
+
+<!-- Add more occasion options as needed -->
+
 
 
 <div class="small-container">
-
     <div class="row row-2">
-        <h2>All Cakes</h2>
+        <h1>All Cakes</h1>
         <select>
             <option>Default Sort</option>
             <option>Sort by Price</option>
@@ -29,37 +65,33 @@
             <option>Sort by Sale</option>
         </select>
     </div>
-
     <!-- cake iteration starts -->
-<div class="row">
-    {%for p in data%}
-    <div class="col-4">
-        <a href="{%url 'cake-detail' p.id%}"><img src="{{p.image.url}}" alt="product-1" height="300px"></a>
-        <a href="{%url 'cake-detail' p.id%}"><h4>{{p.title}}</h4></a>
-        <!-- <div class="rating">
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star-o"></i>
+    <div class="row">
+        {%for p in data%}
+        <div class="col-4">
+            <a href="{%url 'cake-detail' p.id%}"><img src="{{p.image.url}}" alt="product-1" height="300px"></a>
+            <a href="{%url 'cake-detail' p.id%}"><h4>{{p.title}}</h4></a>
+            <!-- <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-o"></i>
+            </div> -->
+            <p>{{p.description}}</p>
+        </div>
+        {%endfor%}
+        <!-- iteration ends -->
+        <br>
+        <!-- <div class="page-btn">
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+            <span>5</span>
+            <span>&#8594;</span>
         </div> -->
-        <p>{{p.description}}</p>
-      </div>
-
-    {%endfor%}
-    
-    <!-- iteration ends -->
-
-  
-<div class="page-btn">
-    <span>1</span>
-    <span>2</span>
-    <span>3</span>
-    <span>4</span>
-    <span>5</span>
-    <span>&#8594;</span>
-</div>
-</div>
+    </div>
 </div>
 
 {%endblock%}

@@ -1,103 +1,153 @@
 {% extends 'base.html' %}
-
 {% block main_block %}
-<section class="section product-detail">
-    <div class="details container">
-        <div class="left image-container">
-            <div class="text-center wow bounceInUp" data-wow-delay="0.1s">
-                <h2 class="mb-3">{{ cake.title }}</h2>
-            </div>
-            <div class="main">
-                <img src="{{ cake.image.url }}" id="zoom" height="200px" alt="" />
-            </div>
-            <p class="mt-3">
-                {{ cake.description }}
-            </p>
-        </div>
-        <div class="right">
-            {%if cake_variants%}
-            <form method="post" action="{%url 'add-to-basket' cake_variants.0.id %}">
-                {%csrf_token%}
-                <div class="options-container">
-                    <!-- Occasion options -->
-                    <div class="mb-3">
-                        <label for="occasion">
-                            <h5>Occasion</h5>
-                        </label>
-                        <select id="occasion" name="occasion" class="form-control">
-                            {% for op in cake.occasion_object.all %}
-                                <option value="{{ op.name }}">{{ op.name }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
+{% load static %}
+<style>
+    .oval-button {
+        border-radius: 50px 50px;
+        /* Adjust the values to make the button more oval */
+        width: 150px;
+        /* Adjust width to your preference */
+        height: 50px;
+        /* Adjust height to your preference */
+        border: 2px solid orange;
+    }
+</style>
+<div class="container-fluid service">
+    <div class="container ">
+        <div class="row justify-content-center">
+            <div class="col-lg-5 col-md-4 col-sm-10 wow bounceInUp" data-wow-delay="0.1s">
+                <div class="bg-light rounded service-item">
 
-                    <!-- Flavor options -->
-                    <div class="mb-3">
-                        <label for="flavour">
-                            <h5>Flavour</h5>
-                        </label>
-                        <select id="flavour" name="flavour" class="form-control">
-                            {% for op in cake.flavour_object.all %}
-                                <option value="{{ op.name }}">{{ op.name }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
+                    <form action="{% url 'add-to-basket' 0 %}" method="post" id="cake-form">
+                        {% csrf_token %}
+                        <input type="hidden" id="cake-id" name="cake_id" value="">
+                        <div class="text-center">
+                            <div class="text-center wow bounceInUp" data-wow-delay="0.1s">
+                                <h3 class="display-5 mb-5">{{ cake.title }}</h3>
+                            </div>
+                            <img src="{{ cake.image.url }}" width="60%" height="300px">
+                            <p class="text-justified">
+                                {{ cake.description }}
+                            </p>
 
-                    <!-- User note -->
-                    <div class="mb-3">
-                        <label for="user-note">
-                            <h5>Wishes / Messages</h5>
-                        </label>
-                        <!-- Adjusted textarea with increased rows -->
-                        <textarea id="user-note" name="note" class="form-control" rows="5" cols="50"
-                        placeholder="Enter your Wishes / Messages..."></textarea>
+                            <div class="options-container">
+                                <!-- Occasion options -->
+                                <label for="occasion">
+                                    <h5>Occasion</h5>
+                                </label>
+                                <div class="options-row">
+                                    <select id="occasion" name="occasion" class="circular-options">
+                                        {% for op in cake.occasion_object.all %}
+                                        <option value="{{ op.name }}">{{ op.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
 
+                                <!-- Flavor options -->
+                                <label for="flavour">
+                                    <h5>Flavour</h5>
+                                </label>
+                                <div class="options-row">
+                                    <select id="flavour" name="flavour" class="circular-options">
+                                        {% for op in cake.flavour_object.all %}
+                                        <option value="{{ op.name }}">{{ op.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <!-- Shape options -->
+                                <label for="shape">
+                                    <h5>Shape</h5>
+                                </label>
+                                <div class="options-row">
+                                    <select id="shape" name="shape" class="circular-options">
+                                        {% for op in cake.shape_object.all %}
+                                        <option value="{{ op.name }}">{{ op.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <!-- <br> -->
+                                <label for="shape">
+                                    <h5>Weight</h5>
+                                </label>
+                                <div>
+                                    <select id="service-options" class="circular-options">
+                                        {% for c in data %}
+                                        <option value="{{ c.id }}">Weight(kg/ml).{{ c.weight }} Rs.{{ c.price }}
+                                        </option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
 
-                    </div>
+                                <!-- <br> -->
 
-                    <!-- Quantity input -->
-                    <div class="mb-3">
-                        <label for="qty">
-                            <h5>Quantity</h5>
-                        </label>
-                        <input type="number" id="qty" name="qty" class="form-control" value="1" min="1">
-                    </div>
+                                <!-- <textarea id="user-note" name="note" class="form-control" rows="1" cols="5"
+                                        placeholder="Enter your Wishes / Messages..."></textarea> -->
+
+                                <!-- User note -->
+                                <div class="mb-3">
+                                    <label for="user-note">
+                                        <h5>Wishes / Messages</h5>
+                                    </label>
+                                    <!-- Adjusted textarea with increased rows -->
+                                    <textarea id="user-note" name="note" class="form-control" rows="5" cols="50"
+                                        placeholder="Enter your Wishes / Messages..."></textarea>
+                                </div>
+
+                                <!-- <p class="mt-2 text-dark">
+                                            <label for="">
+                                                <h5>Qty</h5>
+                                            </label> <input type="number" value="1" name="qty"
+                                                class="rounded-pill py-1 px-2 small" />
+                                    </p> -->
+                                <!-- Quantity input -->
+                                <div class="mb-3">
+                                    <label for="qty">
+                                        <h5>Quantity</h5>
+                                    </label>
+                                    <input type="number" id="qty" name="qty" class="form-control" value="1" min="1">
+                                </div>
+                            </div>
+                        </div>
+
                 </div>
 
-                <!-- weight options -->
-                <div class="mb-3">
-                    <label for="service-options">
-                        <h5>Weight</h5>
-                    </label>
-                    <select id="service-options" name="service-options" class="form-control">
-                        {% for p in cake_variants %}
-                            <option value="{{ p.id }}">{{ p.weight }}kg - {{ p.price }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <!-- shape options -->
-                <div class="mb-3">
-                    <label for="service-options">
-                        <h5>Shape Options</h5>
-                    </label>
-                    <select id="service-options" name="service-options" class="form-control">
-                        {% for p in cake_variants %}
-                            <option value="{{ p.id }}">{{ p.shape }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <!-- Add to cart button -->
+                <!-- <div class="text-center">
+                                <button type="submit" class="oval-button">Add To Cart</button>
+                            </div> -->
+
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary">Add To Cart</button>
                 </div>
-            </form>
-            {% else %}
-            <p>No variants available for this cake.</p>
-            {% endif %}     
 
+                </form>
+
+            </div>
         </div>
     </div>
-</section>
-</style>
+</div>
+</div>
+
+<script>
+    // Function to set the initial value of the cake_id input field to the value of the first option
+    function setInitialCakeId() {
+        var cakeIdInput = document.getElementById('cake-id');
+        var selectedCakeId = document.getElementById('service-options').value;
+        cakeIdInput.value = selectedCakeId;
+        document.getElementById('cake-form').action = "{% url 'add-to-basket' 0 %}".replace("0", selectedCakeId);
+    }
+
+    // Call the function when the page loads
+    window.onload = function () {
+        setInitialCakeId();
+    };
+
+    // Event listener to update cake_id and form action when the selected option changes
+    document.getElementById('service-options').addEventListener('change', function () {
+        var cakeIdInput = document.getElementById('cake-id');
+        var selectedCakeId = this.value;
+        cakeIdInput.value = selectedCakeId;
+        document.getElementById('cake-form').action = "{% url 'add-to-basket' 0 %}".replace("0", selectedCakeId);
+    });
+</script>
 
 {% endblock %}

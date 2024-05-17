@@ -33,18 +33,45 @@
      <div class="container">
         <div class="navbar">
             <div class="logo">
-            <a href="index.html"><img alt="logo" src="{%static 'images/logo.png'%}" width="125px"></a>
+            <a href="index.html"><img alt="logo" src="{%static 'images/logo.png'%}" width="125px" ></a>
             </div>
             <nav>
             <ul id="MenuItems">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="product.html">Products</a></li>
                 <li><a href="">About</a></li>
-                <li><a href="">Contact</a></li>
-                <li><a href="account.html">Account</a></li>
+                <li><a href="">Account</a></li>
+                <li><a href="{%url 'logout'%}">Logout</a></li>
             </ul>
-            </nav>
-            <a href="{%url 'basket-items'%}"><img src="{%static 'images/cart.png'%}" width="30px" height="30px"></a>  <!--Cart image-->
+             </nav>
+
+
+            <!-- <a href="{%url 'basket-items'%}"><img src="{%static 'images/cart.png'%}" width="30px" height="30px"></a> -- Cart image --> 
+
+            <!-- <a href="{%url 'basket-items'%}" class="icon btn btn-primary btn-md-square me-4 rounded-circle d-none d-lg-inline-flex">
+
+              <i class="bx bxs-cart"></i>
+                <span class="d-flex">2</span>
+          </a> -->
+        
+
+          <div style="position: relative; display: inline-block;">
+            <!-- Cart image -->
+            <a href="{% url 'basket-items' %}" style="position: relative; display: inline-block;">
+                <img src="{% static 'images/cart.png' %}" width="30px" height="30px">
+                <!-- Cart count icon with background -->
+                <a href="{% url 'basket-items' %}" class="cart-count-icon" style="position: absolute; top: -10px; right: -10px; background-color: #ff6600; border-radius: 50%; padding: 3px; width: 20px; height: 20px; text-align: center;">
+                    <i class="bx bxs-cart" style="color: white; font-size: 12px; line-height: 20px;"></i>
+                    <span class="d-flex" style="color: white; font-size: 10px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">{{cart_count}}</span>
+                </a>
+            </a>
+        </div>
+        
+        
+        
+        
+        
+
             
             <img src="images/menu.png" class="menu-icon" onclick="menutoggle()">  <!--Menu image-->
         </div>
