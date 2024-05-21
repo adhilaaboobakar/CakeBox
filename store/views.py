@@ -224,8 +224,8 @@ class SignOutView(View):
     def get(self,request,*args,**kwargs):
         logout(request)
         return redirect("signin")
+ 
     
-@method_decorator([signin_required,never_cache],name="dispatch")
 class OrderSummaryView(View):
 
     def get(self,request,*args,**kwargs):

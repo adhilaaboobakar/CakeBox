@@ -112,6 +112,7 @@ class BasketItem(models.Model):
     qty=models.PositiveIntegerField(default=1)
     basket_object=models.ForeignKey(Basket,on_delete=models.CASCADE,related_name="cartitem")
     shape_object=models.ForeignKey(Shape,on_delete=models.CASCADE,null=True)
+    flavour_object=models.ForeignKey(Flavour,on_delete=models.CASCADE,null = True)
     note=models.TextField(blank=True,null=True)
     created_date=models.DateTimeField(auto_now_add=True)
     updated_date=models.DateTimeField(auto_now=True)

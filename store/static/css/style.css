@@ -535,3 +535,68 @@ form a{
   font-size: 0.7rem; /* Reduce font size for smaller button */
   margin-right: 0.5rem; /* Add margin to separate buttons */
 }
+
+
+/* Basic styling for the logo-like heading */
+.logo-heading {
+  font-family: 'Georgia', serif; /* Use a serif font for elegance */
+  font-size: 2em; /* Increase the font size */
+  color: #ff6f61; /* Use a brand-specific color */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Subtle shadow for a slight 3D effect */
+  letter-spacing: 1px; /* Slightly increase letter spacing */
+  margin: 10px 0; /* Adjust margin for spacing */
+}
+
+
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+}
+
+.success-icon {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 20px;
+}
+
+h1 {
+  color: #4CAF50;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+p {
+  color: #555;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.button {
+  display: inline-block;
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.button:hover {
+  background-color: #45a049;
+}
